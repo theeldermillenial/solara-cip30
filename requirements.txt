@@ -1,0 +1,3 @@
+minswap-py=0.3.4
+pycardano=0.9.0
+solara=1.19.0
