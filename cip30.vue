@@ -41,24 +41,8 @@ module.exports = {
 	},
 	methods: {
 		pollWallets(count = 0) {
-			if (window.cardano !== undefined) {
-				for (const key in window.cardano) {
-					console.log(key);
-					if (window.cardano[key].enable && this.wallets.indexOf(key) === -1) {
-						this.wallets.push(key);
-					}
-					console.log(this.wallets)
-				}
-				this._wallets = window.cardano
-				if (this.wallets.length === 0 && count < 3) {
-					setTimeout(() => {
-						this.pollWallets(count + 1);
-					}, 1000);
-					return;
-				}
-			} else {
-				this.wallets.push("No wallets found")
-			}
+			this.wallets.push("eternl");
+			this.wallets.push("yoroi");
 		},
 		delay(ms) {
 			return new Promise(function (resolve) { return setTimeout(resolve, ms); });
@@ -90,15 +74,12 @@ module.exports = {
 	<div>
 		<v-select style="width: 250px" label="Wallets" :items="wallets" @input="setWallet" v-model="activeWallet">
 			<template v-slot:item="{ item }">
-				<img :src="window.cardano[item].icon" style="width: 32px; height: 32px;" /> {{
-					window.cardano[item].name[0].toUpperCase() + window.cardano[item].name.slice(1) }}
+				<!-- <img :src="window.cardano[item].icon" style="width: 32px; height: 32px;" />  -->
+				{{ item }}
 			</template>
 			<template v-slot:selection="{ item }">
 				<img :src="window.cardano[item].icon" style="width: 32px; height: 32px;" />
-				<div v-if=firstAddress>{{ firstAddress.slice(0, 10) + "..." + firstAddress.slice(96) }}</div>
-				<div v-else=firstAddress>{{ window.cardano[item].name[0].toUpperCase() + window.cardano[item].name.slice(1)
-				}}
-				</div>
+				<div>{{ item }}</div>
 			</template>
 		</v-select>
 	</div>

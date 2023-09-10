@@ -83,12 +83,12 @@ class States:
         """
 
 
-states = States()
+# states = States()
 
 
 @solara.component
 def Page():
-    # states = States()
+    states = States()
 
 
     with solara.AppBar():
